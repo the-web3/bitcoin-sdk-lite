@@ -1,5 +1,5 @@
 import bip39 = require("bip39") ;
-import {createAddress, createMultiSignAddress } from "../src/address";
+import {createAddress, createMultiSignAddress } from "../src/index";
 import * as assert from 'assert';
 
 describe('btc unit test case', () => {
