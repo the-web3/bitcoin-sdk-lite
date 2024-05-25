@@ -14,11 +14,11 @@ import {
 describe('bip39 test case', () => {
     test('generateMnemonic', async () => {
         // 1. 生成 128 位随机熵 12 15 18 21 24
-        const entropy = crypto_ts.randomBytes(24); // 128 位是 16 字节
+        const entropy = crypto_ts.randomBytes(24); // 192 位是 24 字节
 
         // 2. 计算校验和 (SHA-256)
         const hash = crypto_ts.createHash('sha256').update(entropy).digest();
-        const checksum = hash[0] >> 6; // 取前 4 位
+        const checksum = hash[0] >> 6; // 取前 6 位
 
         // 3. 组合熵和校验和
         let bits = '';
