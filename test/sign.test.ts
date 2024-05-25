@@ -1,7 +1,7 @@
-import { buildAndSignTx } from "../src/index";
+import { buildAndSignTx, buildUnsignTxAndSign } from "../src/index";
 
 describe('buildAndSignTx test case', () => {
-    test('sign', async () => {
+    test('offline sign tx', async () => {
         const data = {
             inputs: [
                 {
@@ -19,7 +19,7 @@ describe('buildAndSignTx test case', () => {
             ],
         };
         const rawHex = buildAndSignTx({
-            privateKey: "privateKey",
+            privateKey: "60164bec9512d004af7f71e7ed868c8e9ac2cc6234d8b682037ec80547595f2e",
             signObj: data,
             network: "mainnet"
         });
