@@ -100,16 +100,9 @@ export function createSchnorrAddress (params: any): any {
 
   const publicKey = childKey.publicKey;
 
-  // 计算 taproot 公钥
-  const tweak = bitcoin.crypto.taggedHash('TapTweak', publicKey.slice(1, 33));
-  const tweakedPublicKey = Buffer.from(publicKey);
-  for (let i = 0; i < 32; ++i) {
-    tweakedPublicKey[1 + i] ^= tweak[i];
-  }
-
   // 生成 P2TR 地址
   const { address } = bitcoin.payments.p2tr({
-    internalPubkey: tweakedPublicKey.slice(1, 33)
+    internalPubkey: publicKey.length === 32 ? publicKey : publicKey.slice(1, 33)
   });
 
   return {
