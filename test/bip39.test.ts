@@ -57,4 +57,14 @@ describe('bip39 test case', () => {
 
     });
 
+
+    // test('test create mnemonic', async () => {
+    //     const typedArray = new Uint8Array(10);
+    //
+    //     const bytes = crypto_ts.randomBytes(typedArray.byteLength);
+    //     // @ts-ignore
+    //     typedArray.set(new typedArray.constructor(bytes.buffer));
+    //
+    //     console.log(typedArray);
+    // });
 });
