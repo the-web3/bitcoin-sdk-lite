@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/savour-labs/bitcoin-sdk-lite.git"
+    "url": "git+https://github.com/the-web3/bitcoin-sdk-lite.git"
   },
   "author": "seek.guo",
   "license": "ISC",
@@ -20,9 +20,9 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/savour-labs/bitcoin-sdk-lite/issues"
+    "url": "https://github.com/the-web3/bitcoin-sdk-lite/issues"
   },
-  "homepage": "https://github.com/savour-labs/bitcoin-sdk-lite#readme",
+  "homepage": "https://github.com/the-web3/bitcoin-sdk-lite#readme",
   "dependencies": {
     "bip32": "^4.0.0",
     "bitcoinjs-lib": "^6.1.5",

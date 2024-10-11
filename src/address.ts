@@ -85,36 +85,3 @@ export function createMultiSignAddress (params: any): string {
       return '0x00';
   }
 }
-
-export function createSchnorrAddress (params: any): any {
-  bitcoin.initEccLib(ecc);
-  const { seedHex, receiveOrChange, addressIndex } = params;
-  const root = bip32.fromSeed(Buffer.from(seedHex, 'hex'));
-  let path = "m/44'/0'/0'/0/" + addressIndex + '';
-  if (receiveOrChange === '1') {
-    path = "m/44'/0'/0'/1/" + addressIndex + '';
-  }
-  const childKey = root.derivePath(path);
-  const privateKey = childKey.privateKey;
-  if (!privateKey) throw new Error('No private key found');
-
-  const publicKey = childKey.publicKey;
-
-  // 计算 taproot 公钥
-  const tweak = bitcoin.crypto.taggedHash('TapTweak', publicKey.slice(1, 33));
-  const tweakedPublicKey = Buffer.from(publicKey);
-  for (let i = 0; i < 32; ++i) {
-    tweakedPublicKey[1 + i] ^= tweak[i];
-  }
-
-  // 生成 P2TR 地址
-  const { address } = bitcoin.payments.p2tr({
-    internalPubkey: tweakedPublicKey.slice(1, 33)
-  });
-
-  return {
-    privateKey: Buffer.from(childKey.privateKey).toString('hex'),
-    publicKey: Buffer.from(childKey.publicKey).toString('hex'),
-    address
-  };
-}
